@@ -7,15 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>The Times Of BD</title>
+    <title>The Times Of Bangladesh</title>
 </head>
 
-<body class="px-8">
+<body class="md:w-10/12 w-11/12 mx-auto">
     <header>
         <!-- Nav bar starts here  -->
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-base-100 my-6">
             <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl"><kbd class="kbd kbd-lg btn-info">The Times</kbd> Of BD</a>
+                <a class="btn btn-ghost normal-case text-xl px-0"><kbd class="kbd kbd-lg btn-info">The Times</kbd> Of
+                    Bangladesh</a>
             </div>
             <div class="flex-none">
                 <ul class="menu menu-horizontal p-0">
@@ -24,6 +25,15 @@
                 </ul>
             </div>
         </div>
+
+        <!-- categories section  -->
+        <section>
+            <div>
+                <ul class="menu menu-horizontal rounded-none flex justify-between" id="categories-container">
+
+                </ul>
+            </div>
+        </section>
     </header>
 
     <script src="./JS/app.js"></script>
