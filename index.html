@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- daisyui CDN link  -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <!-- tailwind CDN link  -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>The Times Of Bangladesh</title>
+    <!-- font awesome kit link  -->
+    <script src="https://kit.fontawesome.com/f2713aef47.js" crossorigin="anonymous"></script>
+    <title>The Times Of World</title>
 </head>
 
 <body class="md:w-10/12 w-11/12 mx-auto">
@@ -16,7 +20,7 @@
         <div class="navbar bg-base-100 my-6">
             <div class="flex-1">
                 <a class="btn btn-ghost normal-case text-xl px-0"><kbd class="kbd kbd-lg btn-info">The Times</kbd> Of
-                    Bangladesh</a>
+                    World</a>
             </div>
             <div class="flex-none">
                 <ul class="menu menu-horizontal p-0">
@@ -27,7 +31,7 @@
         </div>
 
         <!-- categories section  -->
-        <section>
+        <section class="my-8">
             <div>
                 <ul class="menu menu-horizontal rounded-none flex justify-between" id="categories-container">
 
@@ -35,6 +39,13 @@
             </div>
         </section>
     </header>
+
+    <main>
+        <!-- news display section  -->
+        <div id="news-container">
+
+        </div>
+    </main>
 
     <script src="./JS/app.js"></script>
 </body>
