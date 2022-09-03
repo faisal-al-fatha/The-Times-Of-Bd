@@ -1,9 +1,13 @@
-// runSpinner();
 // get categories from API 
 const loadCategories = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/news/categories');
-    const data = await res.json();
-    displayCategories(data.data.news_category);
+    try {
+        const res = await fetch('https://openapi.programming-hero.com/api/news/categories');
+        const data = await res.json();
+        displayCategories(data.data.news_category);
+
+    } catch (error) {
+        console.log(error);
+    }
 }
 loadCategories();
 
@@ -52,7 +56,7 @@ const displayNewsByCategory = allNews => {
         </div>
         <div><i class="fa-regular fa-eye mr-4"></i>${news.total_view ? news.total_view : 'No data found'}</div>
         <div>
-        <label class="btn modal-button btn-ghost" for="my-modal-3"><a onclick="loadDetails('${news['_id']}')" class="text-3xl text-black"> <i class="fa-solid fa-arrow-right"></i></a></label>
+        <label class="btn modal-button btn-ghost" for="my-modal-3"><a onclick="loadDetails('${news['_id']}'), runSpinner();" class="text-3xl text-black"> <i class="fa-solid fa-arrow-right"></i></a></label>
         </div>
     </div>
         </div >
@@ -68,6 +72,23 @@ const loadDetails = async (id) => {
     showDetails(data.data[0]);
 }
 const showDetails = (newsId) => {
+    hideSpinner();
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+    <figure><img src="${newsId.image_url}" class="w-11/12 rounded-lg" alt="Shoes" />
+    </figure>
+    <div class="flex justify-around mt-4">
+        <div class="flex">
+            <img src='${newsId.author.img}' class="rounded-full w-12 h-12 mr-7" alt="">
+            <p>${newsId.author.name ? newsId.author.name : 'No Data Found'}</p>
+        </div>
+        <div><i class="fa-regular fa-eye mx-4"></i>${newsId.total_view ? newsId.total_view : 'No data found'}</div>
+        <div><p>Rating: ${newsId.rating.number}</p></div>
+    </div>
+    <h2 class="card-title my-3">${newsId.title}</h2>
+    <p>${newsId.details}</p>
+    `;
+
     console.log(newsId);
 }
 
