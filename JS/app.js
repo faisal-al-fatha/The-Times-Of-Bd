@@ -23,13 +23,17 @@ const loadNewsByCategory = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`);
     const data = await res.json();
     displayNewsByCategory(data.data);
-    console.log(data.data);
 }
+
+// for loading breaking news in the initial page 
+loadNewsByCategory('01');
+
 // displayNewsByCategory 
 const displayNewsByCategory = allNews => {
     const newsContainer = document.getElementById('news-container');
+    const sortedAllNews = allNews.sort((a, b) => b.total_view - a.total_view);
     newsContainer.innerHTML = "";
-    allNews.forEach(news => {
+    sortedAllNews.forEach(news => {
         const { thumbnail_url, title, details } = news;
         const div = document.createElement('div');
         div.classList.add('card', 'card-side', 'bg-base-100', 'shadow-xl', 'p-3', 'my-6');
@@ -42,16 +46,25 @@ const displayNewsByCategory = allNews => {
         <div class="flex">
             <img src='${news.author.img}'
                 class="rounded-full w-10 h-10 mr-7" alt="">
-                <p>${news.author.name}</p>
+                <p>${news.author.name ? news.author.name : 'No Data Found'}</p>
         </div>
-        <div><i class="fa-regular fa-eye mr-5"></i>${news.total_view}</div>
-        <div class="text-3xl"><a onclick="showDetails()"> <i class="fa-solid fa-arrow-right"></i></a>
+        <div><i class="fa-regular fa-eye mr-4"></i>${news.total_view ? news.total_view : 'No data found'}</div>
+        <div>
+        <label class="btn modal-button btn glass" for="my-modal-3"><a onclick="loadDetails('${news['_id']}')" class="text-3xl text-black"> <i class="fa-solid fa-arrow-right"></i></a></label>
         </div>
     </div>
         </div >
+        
     `;
         newsContainer.appendChild(div);
     })
+}
+
+const loadDetails = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/news/${id}`);
+    const data = await res.json();
+    // showDetails(data);
+    console.log(data.data[0]);
 }
 
 
