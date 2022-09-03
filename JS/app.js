@@ -30,19 +30,24 @@ const loadNewsByCategory = async (id, name) => {
     displayNewsByCategory(data.data, name);
 }
 
-// for loading breaking news in the initial page 
+// for loading all news in the initial page 
 loadNewsByCategory('08');
 
 // displayNewsByCategory 
 const displayNewsByCategory = (allNews, name) => {
     // display total news count 
     const newsCount = document.getElementById('item-found-message');
-    console.log(allNews);
     newsCount.innerHTML = `
     <h4 class="text-xl font-semibold">${allNews.length} Items found for ${name} category</h4>
-    `
+    `;
+
+    if (allNews.length == 0) {
+        alert('No news found in this category')
+    }
+    // hiding spinner 
     hideSpinner();
     const newsContainer = document.getElementById('news-container');
+    // sorted news 
     const sortedAllNews = allNews.sort((a, b) => b.total_view - a.total_view);
     newsContainer.innerHTML = "";
     sortedAllNews.forEach(news => {
@@ -50,22 +55,29 @@ const displayNewsByCategory = (allNews, name) => {
         const div = document.createElement('div');
         div.classList.add('card', 'card-side', 'bg-base-100', 'shadow-xl', 'hover:drop-shadow-2xl', 'p-3', 'my-6');
         div.innerHTML = `
-        <figure><img src='${thumbnail_url}' class="rounded-lg w-44" alt=""></figure>
+        <div class="flex flex-col md:flex-row">
+        <div>
+            <figure><img src='${thumbnail_url}' class="rounded-lg w-44 md:flex-none flex-1" alt=""></figure>
+        </div>
         <div class="card-body">
             <h2 class="card-title">${title}</h2>
-             <p>${details ? details.slice(0, 200) + ' ...' : details}</p>
-    <div class="flex justify-between">
-        <div class="flex">
-            <img src='${news.author.img}'
-                class="rounded-full w-10 h-10 mr-7" alt="">
-                <p>${news.author.name ? news.author.name : 'No Data Found'}</p>
+            <p>${details ? details.slice(0, 200) + ' ...' : details}</p>
+            <div class="flex justify-between">
+                <div class="flex">
+                    <img src='${news.author.img}' class="rounded-full w-10 h-10 mr-7" alt="">
+                    <p>${news.author.name ? news.author.name : 'No Data Found'}</p>
+                </div>
+                <div><i class="fa-regular fa-eye mr-4"></i>${news.total_view ? news.total_view : 'No data found'}</div>
+                <div>
+                    <label class="btn modal-button btn-ghost" for="my-modal-3"><a
+                            onclick="loadDetails('${news['_id']}'), runSpinner();" class="text-3xl text-black"> <i
+                                class="fa-solid fa-arrow-right"></i></a></label>
+                </div>
+            </div>
         </div>
-        <div><i class="fa-regular fa-eye mr-4"></i>${news.total_view ? news.total_view : 'No data found'}</div>
-        <div>
-        <label class="btn modal-button btn-ghost" for="my-modal-3"><a onclick="loadDetails('${news['_id']}'), runSpinner();" class="text-3xl text-black"> <i class="fa-solid fa-arrow-right"></i></a></label>
-        </div>
+
     </div>
-        </div >
+
         
     `;
         newsContainer.appendChild(div);
@@ -99,7 +111,6 @@ const showDetails = (newsId) => {
     <p>${newsId.details}</p>
     `;
 
-    console.log(newsId);
 }
 
 const spinner = document.getElementById('spinner');
@@ -109,10 +120,4 @@ const runSpinner = () => {
 
 const hideSpinner = () => {
     spinner.classList.add('hidden');
-}
-
-
-
-const consol = () => {
-    console.log('clicked');
 }
