@@ -1,3 +1,4 @@
+// runSpinner();
 // get categories from API 
 const loadCategories = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/news/categories');
@@ -12,7 +13,7 @@ const displayCategories = categories => {
     categories.forEach(category => {
         const li = document.createElement('li');
         li.innerHTML = `
-        <a onclick="loadNewsByCategory('${category.category_id}')">${category.category_name}</a>
+        <a onclick="loadNewsByCategory('${category.category_id}'),  runSpinner()">${category.category_name}</a>
         `;
         categoriesContainer.appendChild(li);
     });
@@ -26,19 +27,20 @@ const loadNewsByCategory = async (id) => {
 }
 
 // for loading breaking news in the initial page 
-loadNewsByCategory('01');
+loadNewsByCategory('08');
 
 // displayNewsByCategory 
 const displayNewsByCategory = allNews => {
+    hideSpinner();
     const newsContainer = document.getElementById('news-container');
     const sortedAllNews = allNews.sort((a, b) => b.total_view - a.total_view);
     newsContainer.innerHTML = "";
     sortedAllNews.forEach(news => {
         const { thumbnail_url, title, details } = news;
         const div = document.createElement('div');
-        div.classList.add('card', 'card-side', 'bg-base-100', 'shadow-xl', 'p-3', 'my-6');
+        div.classList.add('card', 'card-side', 'bg-base-100', 'shadow-xl', 'hover:drop-shadow-2xl', 'p-3', 'my-6');
         div.innerHTML = `
-        <figure><img src='${thumbnail_url}' class="rounded-lg" alt=""></figure>
+        <figure><img src='${thumbnail_url}' class="rounded-lg w-44" alt=""></figure>
         <div class="card-body">
             <h2 class="card-title">${title}</h2>
              <p>${details ? details.slice(0, 200) + ' ...' : details}</p>
@@ -50,7 +52,7 @@ const displayNewsByCategory = allNews => {
         </div>
         <div><i class="fa-regular fa-eye mr-4"></i>${news.total_view ? news.total_view : 'No data found'}</div>
         <div>
-        <label class="btn modal-button btn glass" for="my-modal-3"><a onclick="loadDetails('${news['_id']}')" class="text-3xl text-black"> <i class="fa-solid fa-arrow-right"></i></a></label>
+        <label class="btn modal-button btn-ghost" for="my-modal-3"><a onclick="loadDetails('${news['_id']}')" class="text-3xl text-black"> <i class="fa-solid fa-arrow-right"></i></a></label>
         </div>
     </div>
         </div >
@@ -63,11 +65,20 @@ const displayNewsByCategory = allNews => {
 const loadDetails = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/news/${id}`);
     const data = await res.json();
-    // showDetails(data);
-    console.log(data.data[0]);
+    showDetails(data.data[0]);
+}
+const showDetails = (newsId) => {
+    console.log(newsId);
 }
 
+const spinner = document.getElementById('spinner');
+const runSpinner = () => {
+    spinner.classList.remove('hidden');
+}
 
+const hideSpinner = () => {
+    spinner.classList.add('hidden');
+}
 
 
 
