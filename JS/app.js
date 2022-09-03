@@ -17,24 +17,30 @@ const displayCategories = categories => {
     categories.forEach(category => {
         const li = document.createElement('li');
         li.innerHTML = `
-        <a onclick="loadNewsByCategory('${category.category_id}'),  runSpinner()">${category.category_name}</a>
+        <a onclick="loadNewsByCategory('${category.category_id}', '${category.category_name}'),  runSpinner()">${category.category_name}</a>
         `;
         categoriesContainer.appendChild(li);
     });
 }
 
 // load news according to category 
-const loadNewsByCategory = async (id) => {
+const loadNewsByCategory = async (id, name) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`);
     const data = await res.json();
-    displayNewsByCategory(data.data);
+    displayNewsByCategory(data.data, name);
 }
 
 // for loading breaking news in the initial page 
 loadNewsByCategory('08');
 
 // displayNewsByCategory 
-const displayNewsByCategory = allNews => {
+const displayNewsByCategory = (allNews, name) => {
+    // display total news count 
+    const newsCount = document.getElementById('item-found-message');
+    console.log(allNews);
+    newsCount.innerHTML = `
+    <h4 class="text-xl font-semibold">${allNews.length} Items found for ${name} category</h4>
+    `
     hideSpinner();
     const newsContainer = document.getElementById('news-container');
     const sortedAllNews = allNews.sort((a, b) => b.total_view - a.total_view);
@@ -67,9 +73,13 @@ const displayNewsByCategory = allNews => {
 }
 
 const loadDetails = async (id) => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/news/${id}`);
-    const data = await res.json();
-    showDetails(data.data[0]);
+    try {
+        const res = await fetch(`https://openapi.programming-hero.com/api/news/${id}`);
+        const data = await res.json();
+        showDetails(data.data[0]);
+    } catch (error) {
+        console.log(error);
+    }
 }
 const showDetails = (newsId) => {
     hideSpinner();

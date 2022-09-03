@@ -15,7 +15,7 @@
 </head>
 
 <body class="md:w-10/12 w-11/12 mx-auto">
-    <header>
+    <header class="my-7">
         <!-- Nav bar starts here  -->
         <div class="navbar bg-base-100 my-6">
             <div class="flex-1">
@@ -38,8 +38,8 @@
     </header>
 
     <main>
-        accordian 1
-        <div class="collapse">
+        <!-- Sample 1  -->
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
             <input type="checkbox" />
             <div class="collapse-title text-xl font-medium">
                 Click me to show/hide content
@@ -49,13 +49,77 @@
             </div>
         </div>
 
-        accordian 2
-        <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+
+        <!-- Question 1  -->
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+            <input type="checkbox" />
             <div class="collapse-title text-xl font-medium">
-                Focus me to see content
+                <p class="font-semibold">1. Difference between var, let and const</p>
             </div>
             <div class="collapse-content">
-                <p>tabindex="0" attribute is necessary to make the div focusable</p>
+                <div class="overflow-x-auto ">
+                    <table class="table table-zebra w-full">
+                        <!-- head -->
+                        <thead>
+                            <tr>
+                                <th>Var</th>
+                                <th>Let</th>
+                                <th>const</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- row 1 -->
+                            <tr>
+                                <td class="whitespace-pre-line">var declarations are globally scoped or function/locally
+                                    scoped.</td>
+                                <td class="whitespace-pre-line">Variables declared with the let keyword are
+                                    block-scoped.</td>
+                                <td class="whitespace-pre-line">Variables declared with const keyword are also
+                                    block-scoped.
+                                </td>
+                            </tr>
+                            <!-- row 2 -->
+                            <tr>
+                                <td class="whitespace-pre-line">Variables declared with the var keyword are hoisted.
+                                </td>
+                                <td class="whitespace-pre-line">Variables declared with the let keyword are not hoisted.
+                                </td>
+                                <td class="whitespace-pre-line">Variables declared with the const keyword are not
+                                    hoisted.</td>
+                            </tr>
+                            <!-- row 3 -->
+                            <tr>
+                                <td class="whitespace-pre-line">var variables can be re-declared and updated</td>
+                                <td class="whitespace-pre-line">let can be updated but cannot re-declared.</td>
+                                <td class="whitespace-pre-line">const cannot be updated or re-declared</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Question 2  -->
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+            <input type="checkbox" />
+            <div class="collapse-title text-xl font-medium">
+                <p class="font-semibold">2. Regular Function vs Arrow Function</p>
+            </div>
+            <div class="collapse-content">
+                <p>hello</p>
+            </div>
+        </div>
+
+
+        <!-- Question 4  -->
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+            <input type="checkbox" />
+            <div class="collapse-title text-xl font-medium">
+                <p class="font-semibold">hello</p>
+            </div>
+            <div class="collapse-content">
+                <p>hello</p>
             </div>
         </div>
     </main>
