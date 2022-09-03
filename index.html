@@ -32,12 +32,6 @@
         <!-- spinner/ progress bar  -->
         <progress class="progress w-full hidden" id="spinner"></progress>
 
-        <!-- items found message section  -->
-        <div id="item-found-message">
-
-        </div>
-
-
         <!-- categories section  -->
         <section class="my-8">
             <div>
@@ -47,6 +41,23 @@
                 </ul>
             </div>
         </section>
+
+        <!-- items found message section  -->
+        <div id="item-found-message">
+
+        </div>
+        <div class="flex my-5">
+            <div>
+                <h4>Sort By:</h4>
+            </div>
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost btn-sm m-1 rounded-none">Set your preference</label>
+                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a>Default</a></li>
+                    <li><a>View</a></li>
+                </ul>
+            </div>
+        </div>
     </header>
 
     <main class="md:w-10/12 w-11/12 mx-auto mb-12 min-h-screen">
@@ -74,7 +85,7 @@
     </main>
 
     <footer class="mb-0 h-48 bg-slate-200">
-        <div class="text-center">
+        <div class="text-center mb-4">
             <h2 class="font-semibold pt-20">Copy Right 2021 News Portal</h2>
 
         </div>
