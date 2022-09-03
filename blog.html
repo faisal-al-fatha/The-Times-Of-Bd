@@ -24,8 +24,8 @@
             </div>
             <div class="flex-none">
                 <ul class="menu menu-horizontal p-0">
-                    <li><a>News</a></li>
-                    <li><a>Blogs</a></li>
+                    <li><a href="./index.html">News</a></li>
+                    <li><a href="./blog.html">Blogs</a></li>
                 </ul>
             </div>
         </div>
@@ -37,21 +37,10 @@
 
     </header>
 
-    <main class="md:w-10/12 w-11/12 mx-auto">
-        <!-- Sample 1  -->
-        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
-            <input type="checkbox" />
-            <div class="collapse-title text-xl font-medium">
-                Click me to show/hide content
-            </div>
-            <div class="collapse-content">
-                <p>hello</p>
-            </div>
-        </div>
-
+    <main class="md:w-10/12 w-11/12 mx-auto min-h-screen">
 
         <!-- Question 1  -->
-        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box my-5">
             <input type="checkbox" />
             <div class="collapse-title text-xl font-medium">
                 <p class="font-semibold">1. Difference between var, let and const</p>
@@ -101,7 +90,7 @@
 
 
         <!-- Question 2  -->
-        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box my-5">
             <input type="checkbox" />
             <div class="collapse-title text-xl font-medium">
                 <p class="font-semibold">2. Regular Function vs Arrow Function</p>
@@ -112,14 +101,24 @@
         </div>
 
 
-        <!-- Question 4  -->
-        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+        <!-- Question 3  -->
+        <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box my-5">
             <input type="checkbox" />
             <div class="collapse-title text-xl font-medium">
-                <p class="font-semibold">hello</p>
+                <p class="font-semibold">3. Why do we use template strings in JavaScript?</p>
             </div>
             <div class="collapse-content">
-                <p>hello</p>
+                <p>Template strings are a powerful feature of modern JavaScript released in ES6. It lets us
+                    insert/interpolate variables and expressions into strings without needing to concatenate like in
+                    older versions of JavaScript. It allows us to create strings that are complex and contain dynamic
+                    elements.As we know it's easy to make syntax errors with the old concatenation syntax if we have
+                    complex variables and expressions. Therefore template strings are a great improvement from what we
+                    had before.</p>
+                <h6>Another great feature of template strings is that we can have strings with multiple lines for better
+                    code readability.</h6>
+                <h6>Template strings can be nested in each other. This is a great feature because many people want to
+                    create dynamic strings. Template strings allow us to nest regular strings or template strings within
+                    template strings.</h6>
             </div>
         </div>
     </main>
